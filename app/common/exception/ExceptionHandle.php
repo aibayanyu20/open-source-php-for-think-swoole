@@ -7,6 +7,7 @@ use think\exception\Handle;
 use think\exception\HttpException;
 use think\exception\HttpResponseException;
 use think\exception\ValidateException;
+use think\Request;
 use think\Response;
 use Throwable;
 
@@ -44,14 +45,20 @@ class ExceptionHandle extends Handle
      * Render an exception into an HTTP response.
      *
      * @access public
-     * @param \think\Request   $request
+     * @param Request   $request
      * @param Throwable $e
      * @return Response
      */
     public function render($request, Throwable $e): Response
     {
         // 添加自定义异常处理机制
-
+        if ($e instanceof ApiException){
+            $arr = [
+                'code'=>$e->getErrorCode(),
+                'msg'=>$e->getMsg()
+            ];
+            return json($arr)->code($e->getState());
+        }
         // 其他错误交给系统处理
         return parent::render($request, $e);
     }
