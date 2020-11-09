@@ -7,4 +7,6 @@ return [
     // \think\middleware\LoadLangPack::class,
     // Session初始化
     // \think\middleware\SessionInit::class
+    // 是否开启日志记录
+    \app\middleware\LogRecord::class
 ];
