@@ -24,6 +24,7 @@ class CheckAuth
     {
         $token = $request->header("Access-Token");
         // 开始解密当前的token数据
+        if (empty($token)) apiError("请先登录到系统",10000);
         try {
             $data = (new JwtCheckAuth())->getData($token);
             // 拿到当前的数据

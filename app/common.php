@@ -6,7 +6,7 @@ use app\common\exception\ApiException;
 function apiSuccess($msg, $data=[], $code=200, $state=200){
     // 成功的回传消息类型
     $arr = ['msg'=>$msg,'code'=>$code];
-    if (empty($data)){
+    if (!empty($data)){
         $arr['data'] = $data;
     }
     return json($arr)->code($state);
