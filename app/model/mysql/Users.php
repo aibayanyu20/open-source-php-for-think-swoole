@@ -19,6 +19,10 @@ class Users extends BaseModel
         return $this->hasOne("UserInfo","uid","id");
     }
 
+    public function rules(){
+        return $this->hasMany("UserRoles","uid",'id');
+    }
+
     /**
      * 加密密码的解密功能
      * @time 2020/11/16 9:41 下午
@@ -69,6 +73,10 @@ class Users extends BaseModel
             ->cache(true,$this->cacheTime)
             ->withoutField("password,updated_at,created_at")->with(['userinfo'=>function($query){
                 $query->withoutField("updated_at,created_at");
+            },'rules'=>function($query){
+                $query->withoutField('created_at')->with(['rule'=>function($q){
+                    $q->field("name,id");
+                }]);
             }])->find();
     }
 
