@@ -14,7 +14,8 @@ class UserValidate extends BaseValidate
         'password|密码'=>'require|min:6',
         'oldPassword|旧密码'=>'require|min:6',
         'newPassword|新密码'=>'require|min:6',
-        'rePassword|确认密码'=>'require|min:6|confirm:newPassword'
+        'rePassword|确认密码'=>'require|min:6|confirm:newPassword',
+        'role|用户权限'=>'require'
     ];
 
     protected $message = [
@@ -28,6 +29,7 @@ class UserValidate extends BaseValidate
 
     protected $scene = [
         'login'=>['username','password'],
-        'update'=>['oldPassword','newPassword','rePassword']
+        'update'=>['oldPassword','newPassword','rePassword'],
+        'save'=>['username','password','role']
     ];
 }

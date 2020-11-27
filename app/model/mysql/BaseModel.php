@@ -33,4 +33,34 @@ class BaseModel extends Model
      * @var string
      */
     protected $updateTime = "updated_at";
+
+    /**
+     * 获取用户的权限的信息
+     * @time 2020/11/20 7:11 上午
+     * @return array
+     * @author aibayanyu
+     */
+    public function getRoles(): array{
+        // 拿到用户对应的权限的信息
+        $rolesModel = new Roles();
+        $userRoles = new UserRoles();
+        $rids = $userRoles->where("uid",$this->userId)->column("rid");
+        $roles = $rolesModel->whereIn("id",$rids)->column("name");
+        // 判断当前是否为超级管理员
+        $isAdmin = false;
+        if (in_array("admin",$roles)){
+            $isAdmin = true;
+        }
+        return ['ids'=>$rids,'roles'=>$roles,'isAdmin'=>$isAdmin];
+    }
+
+    protected function getPages(){
+        // 获取菜单的limit和page
+        $limit = request()->param("limit");
+        // 获取菜单的页数
+        $page = request()->param("page");
+        if (empty($limit)) $limit = 20;
+        if (empty($page)) $page = 1;
+        return [$limit,$page];
+    }
 }

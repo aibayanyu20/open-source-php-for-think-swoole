@@ -29,6 +29,8 @@ class CheckAuth
             $data = (new JwtCheckAuth())->getData($token);
             // 拿到当前的数据
             $request->userId = $data->data->id;
+            $request->username = $data->data->username;
+            $request->token = $token;
         }catch (ExpiredException $expiredException){
             apiError("登录已过期",10000);
         }catch (SignatureInvalidException $signatureInvalidException){

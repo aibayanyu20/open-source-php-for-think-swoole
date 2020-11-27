@@ -12,6 +12,9 @@ use app\BaseController;
 class Index extends BaseController
 {
     public function index(){
+        $arr1 = [2,4,5];
+        $arr2 = [2,3,4,5];
+        halt(array_diff($arr2,$arr1));
         sleep(5);
     }
 }

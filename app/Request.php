@@ -5,4 +5,6 @@ namespace app;
 class Request extends \think\Request
 {
     public $userId;
+    public $username;
+    public $token;
 }

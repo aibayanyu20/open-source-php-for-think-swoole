@@ -33,9 +33,8 @@ class YyMenus extends Migrator
             ->addColumn('uid','integer',['default'=>0,'comment'=>'菜单的创建者'])
             ->addColumn('component','string',['limit'=>50,'comment'=>'菜单的组件地址'])
             ->addColumn('redirect','string',['limit'=>50,'default'=>'','comment'=>'重定向地址，不需要就不填写'])
-            ->addColumn('meta_title','string',['limit'=>30,'default'=>'','comment'=>'在面包屑中显示的名字'])
             ->addColumn('meta_icon','string',['limit'=>39,'default'=>'','comment'=>'图标'])
-            ->addColumn('meta_hidden','boolean',['limit'=>1,'default'=>1,'comment'=>'当前菜单是否需要显示在侧边栏'])
+            ->addColumn('meta_hidden','boolean',['limit'=>1,'default'=>1,'comment'=>'当前菜单是否需要显示在侧边栏0为显示，1为隐藏'])
             // 当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式--如组件页面
             // 只有一个时，会将那个子路由当做根路由显示在侧边栏--如引导页面
             // 若你想不管路由下面的 children 声明的个数，总是显示你的根路由

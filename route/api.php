@@ -14,6 +14,10 @@ Route::group("/api/:v",function (){
     Route::group("/",function (){
         Route::get("getUserInfo","api.:v.User/getUserInfo");
         Route::post("user/changePass",'api.:v.User/changePass');
+        Route::get("getMenus","api.:v.Menu/getMenus");
+        Route::get("logout","api.:v.User/logout");
+        Route::get("user/getRoles","api.:v.User/getRoles");
+        Route::resource('user','api.:v.User');
     })->middleware(['checkAuth']);
 
     /**
